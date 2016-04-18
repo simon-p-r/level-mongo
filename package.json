@@ -1,0 +1,25 @@
+{
+  "name": "level-mongo",
+  "version": "0.0.1",
+  "description": "mongo like leveldb",
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "lab -t 100 -v -a code -L"
+  },
+  "author": "simon-p-r <simon.ricaldone@circabs.com>",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "joi": "^8.0.5",
+    "level": "^1.4.0",
+    "level-sublevel": "^6.5.4",
+    "neo-async": "^1.8.0"
+  },
+  "devDependencies": {
+    "code": "^2.2.0",
+    "hapi": "^13.3.0",
+    "lab": "^10.3.1"
+  }
+}
