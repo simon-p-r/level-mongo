@@ -82,7 +82,7 @@ Mongo methods partially implemented on each collection object
 
 * getKeys - returns all keys stored within collection
 
-TODO
+##### TODO
 
 - improve supported queries
 - make attempt to enable indexing - in memory only
