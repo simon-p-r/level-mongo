@@ -1,6 +1,6 @@
 {
   "name": "level-mongo",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "mongo like leveldb",
   "main": "lib/index.js",
   "directories": {
@@ -9,9 +9,18 @@
   "scripts": {
     "test": "lab -t 100 -v -a code -L"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/simon-p-r/level-mongo.git"
+  },
   "author": "simon-p-r <simon.ricaldone@circabs.com>",
   "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/simon-p-r/level-mongo/issues"
+  },
+  "homepage": "https://github.com/simon-p-r/level-mongo#readme",
   "dependencies": {
+    "hoek": "^3.0.4",
     "joi": "^8.0.5",
     "level": "^1.4.0",
     "level-sublevel": "^6.5.4",
