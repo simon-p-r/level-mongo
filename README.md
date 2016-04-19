@@ -78,6 +78,8 @@ Mongo methods partially implemented on each collection object
 
 * deleteMany - deletes all records within collection
 
+* updateOne - updates one record by merging modifier object into original document
+
 * count - return number of records in collection
 
 * getKeys - returns all keys stored within collection
@@ -87,4 +89,4 @@ Mongo methods partially implemented on each collection object
 - improve supported queries
 - make attempt to enable indexing - in memory only
 - add schema option to define data shape
-- updateOne and updateMany methods, plus any other possible methods
+- updateOne and updateMany methods - add interface to modify operators

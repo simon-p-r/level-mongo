@@ -311,6 +311,47 @@ describe('level-mongo', () => {
         });
     });
 
+    it('should have a updateOne method', (done) => {
+
+        const db = new DB(options);
+
+        db.open((err) => {
+
+            expect(err).to.not.exist();
+
+            const func = () => {
+
+                db.collections.users.updateOne({ _id: 'a' });
+            };
+
+            expect(func).throw(TypeError);
+
+            db.collections.users.insertMany(Recs, (err, inserted) => {
+
+                expect(err).to.not.exist();
+
+                db.collections.users.updateOne({ _id: 'a' }, { update: 1 }, (err, updated) => {
+
+                    expect(err).to.not.exist();
+                    expect(updated.update).to.equal(1);
+                    expect(updated.test).to.equal(1);
+
+                    db.collections.users.updateOne('a', { update: 1 }, (err, fail) => {
+
+                        expect(err).to.exist();
+                        db.collections.users.updateOne({ _id: 'a' }, 1, (err, invalid) => {
+
+                            expect(err).to.exist();
+                            db.close(done);
+                        });
+                    });
+                });
+
+
+            });
+        });
+    });
+
     it('should have a count method', (done) => {
 
         const db = new DB(options);
