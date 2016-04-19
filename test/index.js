@@ -46,6 +46,20 @@ describe('level-mongo', () => {
         }
     };
 
+    it('should assert in coming options to constructor function', (done) => {
+
+        const noLocation = {
+            collections: {}
+        };
+
+        expect(() => {
+
+            return new DB(noLocation);
+        }).to.throw(Error);
+
+        done();
+    });
+
     it('should open db with no errors', (done) => {
 
         const db = new DB(options);
@@ -62,7 +76,12 @@ describe('level-mongo', () => {
                 expect(db.collections.users[method]).to.be.a.function();
                 expect(db.collections.products[method]).to.be.a.function();
             });
-            db.close(done);
+            db.close((err) => {
+
+                expect(err).to.not.exist();
+                expect(db._settings).to.not.exist();
+                done();
+            });
         });
     });
 
