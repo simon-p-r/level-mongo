@@ -1,6 +1,6 @@
 {
   "name": "level-mongo",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "mongo like leveldb",
   "main": "lib/index.js",
   "directories": {
