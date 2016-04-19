@@ -46,7 +46,7 @@ describe('level-mongo', () => {
         }
     };
 
-    it('should assert in coming options to constructor function', (done) => {
+    it('should assert incoming options to constructor function', (done) => {
 
         const noLocation = {
             collections: {}
