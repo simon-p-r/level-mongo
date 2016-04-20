@@ -131,7 +131,7 @@ describe('level-mongo', () => {
 
                     db.collections.users.findOne({ _id: 'invalid' }, (err, invalid) => {
 
-                        expect(err).to.exist();
+                        expect(err).to.not.exist();
                         expect(invalid).to.equal(null);
                         db.close(done);
 
