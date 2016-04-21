@@ -1,6 +1,6 @@
 {
   "name": "level-mongo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "mongo like leveldb",
   "main": "lib/index.js",
   "directories": {
@@ -24,7 +24,7 @@
     "joi": "^8.0.5",
     "level": "^1.4.0",
     "level-sublevel": "^6.5.4",
-    "neo-async": "^1.8.0"
+    "neo-async": "^1.8.1"
   },
   "devDependencies": {
     "code": "^2.2.0",

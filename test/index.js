@@ -301,8 +301,8 @@ describe('level-mongo', () => {
 
                 db.collections.users.deleteOne({ _id: 'invalid' }, (err, deleted) => {
 
-                    expect(err).to.exist();
-                    expect(err.message).to.contain('Key not found in database');
+                    expect(err).to.not.exist();
+                    expect(deleted).to.equal(null);
                     db.close(done);
                 });
 
@@ -339,10 +339,17 @@ describe('level-mongo', () => {
                     db.collections.users.updateOne('a', { update: 1 }, (err, fail) => {
 
                         expect(err).to.exist();
-                        db.collections.users.updateOne({ _id: 'a' }, 1, (err, invalid) => {
+                        db.collections.users.updateOne({ _id: 'invalid' }, { update: 1 }, (err, nil) => {
 
-                            expect(err).to.exist();
-                            db.close(done);
+                            expect(err).to.not.exist();
+                            expect(nil).to.equal(null);
+
+                            db.collections.users.updateOne({ _id: 'invalid' }, 1, (err, invalid) => {
+
+                                expect(err).to.exist();
+                                expect(invalid).to.equal(null);
+                                db.close(done);
+                            });
                         });
                     });
                 });
