@@ -86,7 +86,27 @@ Mongo methods partially implemented on each collection object
 
 ##### TODO
 
-- improve supported queries
-- make attempt to enable indexing - in memory only
-- add schema option to define data shape
-- updateOne and updateMany methods - add interface to modify operators
+- improve indexing - in memory only? B-Tree?
+- add schema parameter and validation option to define data shape
+- ~~findOne~~
+- ~~findMany~~
+- ~~insertOne~~
+- ~~insertMany~~
+- ~~updateOne~~
+- updatedMany
+- ~~count~~
+- allow querying by document properties as opposed to just be id
+- abstract shared logic better
+- add update operators
+    - $set - partially implemented
+    - $unset - partially implemented
+    - $inc
+    - $mul
+    - $rename
+    - $min
+    - $max
+    - $currentDate
+ - add array operators
+ - add find projection
+    - Return fields
+    - Exclude fields

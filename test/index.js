@@ -79,7 +79,8 @@ describe('level-mongo', () => {
             db.close((err) => {
 
                 expect(err).to.not.exist();
-                expect(db._settings).to.not.exist();
+                expect(db._db).to.be.not.exist();
+                expect(db.collections).to.be.not.exist();
                 done();
             });
         });
@@ -104,7 +105,13 @@ describe('level-mongo', () => {
             db.collections.users.findOne('string', (err, doc) => {
 
                 expect(err).to.exist();
-                db.close(done);
+
+                db.collections.users.findOne({ invalid: 'key' }, (err, invalid) => {
+
+                    expect(err).to.exist();
+                    db.close(done);
+
+                });
 
             });
 
@@ -200,6 +207,35 @@ describe('level-mongo', () => {
         });
     });
 
+    it('should check parameters to insertOne method are valid', (done) => {
+
+        const db = new DB(options);
+
+        db.open((err) => {
+
+            expect(err).to.not.exist();
+
+            db.collections.users.insertOne(null, (err, result) => {
+
+                expect(err).to.exist();
+
+                const func = () => {
+
+                    db.collections.users.insertOne({ _id: 'key' });
+                };
+
+                expect(func).throws(TypeError);
+
+                db.collections.users.insertOne({ invalid: 'key' }, (err, doc) => {
+
+                    expect(err).to.exist();
+                    db.close(done);
+
+                });
+            });
+        });
+    });
+
     it('should have a insertMany method', (done) => {
 
         const db = new DB(options);
@@ -219,6 +255,41 @@ describe('level-mongo', () => {
                     expect(err).to.exist();
                     expect(doc).to.not.exist();
                     db.close(done);
+
+                });
+            });
+        });
+    });
+
+    it('should check parameters to insertMany method', (done) => {
+
+        const db = new DB(options);
+
+        db.open((err) => {
+
+            expect(err).to.not.exist();
+
+            db.collections.users.insertMany(null, (err, result) => {
+
+                expect(err).to.exist();
+
+                const func = () => {
+
+                    db.collections.users.insertMany([{ _id: 'key' }]);
+                };
+
+                expect(func).throws(TypeError);
+
+                db.collections.users.insertMany([{ invalid: 'key' }], (err, doc) => {
+
+                    expect(err).to.exist();
+
+                    db.collections.users.insertMany([{ _id: 'key' }, 'key'], (err, invalid) => {
+
+                        expect(err).to.exist();
+                        db.close(done);
+
+                    });
 
                 });
             });
@@ -330,16 +401,16 @@ describe('level-mongo', () => {
 
                 expect(err).to.not.exist();
 
-                db.collections.users.updateOne({ _id: 'a' }, { update: 1 }, (err, updated) => {
+                db.collections.users.updateOne({ _id: 'a' }, { $set: { update: 1 } }, (err, updated) => {
 
                     expect(err).to.not.exist();
                     expect(updated.update).to.equal(1);
                     expect(updated.test).to.equal(1);
 
-                    db.collections.users.updateOne('a', { update: 1 }, (err, fail) => {
+                    db.collections.users.updateOne('a', { $set: { update: 1 } }, (err, fail) => {
 
                         expect(err).to.exist();
-                        db.collections.users.updateOne({ _id: 'invalid' }, { update: 1 }, (err, nil) => {
+                        db.collections.users.updateOne({ _id: 'invalid' }, { $set: { update: 1 } }, (err, nil) => {
 
                             expect(err).to.not.exist();
                             expect(nil).to.equal(null);
@@ -348,7 +419,13 @@ describe('level-mongo', () => {
 
                                 expect(err).to.exist();
                                 expect(invalid).to.equal(null);
-                                db.close(done);
+
+                                db.collections.users.updateOne({ invalid: 'keys' }, { $set: { update: 1 } }, (err, keyErr) => {
+
+                                    expect(err).to.exist();
+                                    expect(keyErr).to.equal(null);
+                                    db.close(done);
+                                });
                             });
                         });
                     });
