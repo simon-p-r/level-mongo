@@ -3,7 +3,7 @@
 const Code = require('code');
 const DB = require('../lib/index.js');
 const Lab = require('lab');
-const RmDir = require('rimraf');
+const RmDir = require('basic-utils').rmDir;
 
 
 // Fixtures
@@ -317,7 +317,7 @@ describe('level-mongo', () => {
 
                         expect(err).to.not.exist();
                         expect(results).to.be.an.object();
-                        expect(deleted.deleted).to.deep.equal(['a', 'b', 'c']);
+                        expect(deleted.deleted).to.equal(['a', 'b', 'c']);
                         db.close(done);
 
                     });

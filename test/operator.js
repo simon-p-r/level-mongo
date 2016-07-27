@@ -29,7 +29,8 @@ describe('operator', () => {
             }
         };
 
-        expect(Operators(original, operator)).to.deep.equal({ hello: 'goodbye', world: 'hello' });
+        const results = Operators(original, operator);
+        expect(results).to.equal({ hello: 'goodbye', world: 'hello' });
         done();
 
     });
@@ -51,7 +52,8 @@ describe('operator', () => {
             }
         };
 
-        expect(Operators(original, operator)).to.deep.equal({ key: 'value' });
+        const results = Operators(original, operator);
+        expect(results).to.equal({ key: 'value' });
         done();
 
     });
@@ -67,7 +69,8 @@ describe('operator', () => {
             hello: 1
         };
 
-        expect(Operators(original, operator)).to.deep.equal(original);
+        const results = Operators(original, operator);
+        expect(results).to.equal(original);
         done();
 
     });
@@ -87,7 +90,9 @@ describe('operator', () => {
                 key: undefined
             }
         };
-        expect(Operators(original,operator)).to.deep.equal(original);
+
+        const results = Operators(original, operator);
+        expect(results).to.equal(original);
         done();
 
     });

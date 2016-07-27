@@ -1,4 +1,6 @@
-# level-mongo [![Build Status](https://travis-ci.org/simon-p-r/level-mongo.svg?branch=master)](https://travis-ci.org/simon-p-r/level-mongo)
+# level-mongo 
+[![Build Status](https://travis-ci.org/simon-p-r/level-mongo.svg?branch=master)](https://travis-ci.org/simon-p-r/level-mongo)
+[![Coverage Status](https://coveralls.io/repos/github/simon-p-r/level-mongo/badge.svg?branch=master)](https://coveralls.io/github/simon-p-r/level-mongo?branch=master)
 
 
 A basic mongo query interface for leveldb backend, future version will try to allow more advanced querying and partial & full updates
