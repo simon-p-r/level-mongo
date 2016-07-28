@@ -1,6 +1,6 @@
 {
   "name": "level-mongo",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "mongo like leveldb",
   "main": "lib/index.js",
   "directories": {
@@ -22,15 +22,15 @@
   "homepage": "https://github.com/simon-p-r/level-mongo#readme",
   "dependencies": {
     "basic-utils": "^1.5.4",
-    "hoek": "^4.0.1",
+    "hoek": "^4.0.2",
     "joi": "^9.0.4",
     "level": "^1.4.0",
     "level-sublevel": "^6.5.4",
     "neo-async": "^2.0.0"
   },
   "devDependencies": {
-    "code": "^3.0.1",
-    "coveralls": "^2.11.11",
+    "code": "^3.0.2",
+    "coveralls": "^2.11.12",
     "lab": "^10.9.0"
   }
 }
