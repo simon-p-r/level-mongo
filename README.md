@@ -32,7 +32,7 @@ Valid options for constructor object exposed by module are shown below
    * `cacheSize` number, default 8 x 1024 x 1024.  LRU cache for leveldb
 
 
- ```js
+ ```javascript
 
 'use strict';
 
@@ -66,6 +66,7 @@ db.open((err) => {
     });
 
 });
+
 ```
 
 Mongo methods partially implemented on each collection object
