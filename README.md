@@ -1,4 +1,6 @@
 # level-mongo 
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/simon-p-r/level-mongo.svg)](https://greenkeeper.io/)
 [![build status](https://travis-ci.org/simon-p-r/level-mongo.svg?branch=master)](https://travis-ci.org/simon-p-r/level-mongo)
 [![Current Version](https://img.shields.io/npm/v/level-mongo.svg?maxAge=1000)](https://www.npmjs.com/package/level-mongo)
 [![dependency Status](https://img.shields.io/david/simon-p-r/level-mongo.svg?maxAge=1000)](https://david-dm.org/simon-p-r/level-mongo)
