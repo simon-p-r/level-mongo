@@ -1,5 +1,6 @@
 # level-mongo 
 [![build status](https://travis-ci.org/simon-p-r/level-mongo.svg?branch=master)](https://travis-ci.org/simon-p-r/level-mongo)
+[![Windows Build Status](https://img.shields.io/appveyor/ci/simon-p-r/level-mongo/master.svg?label=windows&style=flat-square&maxAge=2592000)](https://ci.appveyor.com/project/simon-p-r/level-mongo)
 [![Current Version](https://img.shields.io/npm/v/level-mongo.svg?maxAge=1000)](https://www.npmjs.com/package/level-mongo)
 [![dependency Status](https://img.shields.io/david/simon-p-r/level-mongo.svg?maxAge=1000)](https://david-dm.org/simon-p-r/level-mongo)
 [![devDependency Status](https://img.shields.io/david/dev/simon-p-r/level-mongo.svg?maxAge=1000)](https://david-dm.org/simon-p-r/level-mongo?type=dev)
