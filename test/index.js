@@ -10,6 +10,8 @@ const RmDir = require('basic-utils').rmDir;
 const methods = ['find', 'findOne', 'deleteOne', 'deleteMany', 'insertOne', 'insertMany', 'count'];
 const Recs = require('./fixtures/recs');
 
+const closeCb = () => {};
+
 // Set-up lab
 const lab = exports.lab = Lab.script();
 const describe = lab.describe;
@@ -20,14 +22,17 @@ const expect = Code.expect;
 
 describe('level-mongo', () => {
 
-    afterEach((done) => {
+    afterEach(() => {
 
-        RmDir('./test/fixtures/level', (err) => {
+        return new Promise((resolve) => {
 
-            expect(err).to.not.exist();
-            done();
+            // Wait 1 second
+            RmDir('./test/fixtures/level', (err) => {
+
+                expect(err).to.not.exist();
+                resolve();
+            });
         });
-
     });
 
 
@@ -46,7 +51,7 @@ describe('level-mongo', () => {
         }
     };
 
-    it('should assert incoming options to constructor function', (done) => {
+    it('should assert incoming options to constructor function', () => {
 
         const noLocation = {
             collections: {}
@@ -56,11 +61,9 @@ describe('level-mongo', () => {
 
             return new DB(noLocation);
         }).to.throw(Error);
-
-        done();
     });
 
-    it('should open db with no errors', (done) => {
+    it('should open db with no errors', () => {
 
         const db = new DB(options);
 
@@ -81,12 +84,13 @@ describe('level-mongo', () => {
                 expect(err).to.not.exist();
                 expect(db._db).to.be.not.exist();
                 expect(db.collections).to.be.not.exist();
-                done();
+                // resolve();
             });
         });
+
     });
 
-    it('should throw or return errors for invalid parameters to findOne method', (done) => {
+    it('should throw or return errors for invalid parameters to findOne method', () => {
 
         const db = new DB(options);
 
@@ -109,7 +113,7 @@ describe('level-mongo', () => {
                 db.collections.users.findOne({ invalid: 'key' }, (err, invalid) => {
 
                     expect(err).to.exist();
-                    db.close(done);
+                    db.close(closeCb);
 
                 });
 
@@ -118,7 +122,7 @@ describe('level-mongo', () => {
         });
     });
 
-    it('should have a findOne method', (done) => {
+    it('should have a findOne method', () => {
 
         const db = new DB(options);
 
@@ -140,18 +144,16 @@ describe('level-mongo', () => {
 
                         expect(err).to.not.exist();
                         expect(invalid).to.equal(null);
-                        db.close(done);
+                        db.close(closeCb);
 
                     });
-
                 });
-
             });
-
         });
     });
 
-    it('should have a find method', (done) => {
+
+    it('should have a find method',  () => {
 
         const db = new DB(options);
 
@@ -168,16 +170,14 @@ describe('level-mongo', () => {
 
                     expect(err).to.not.exist();
                     expect(docs).to.be.an.array().and.have.length(3);
-                    db.close(done);
-
+                    db.close(closeCb);
                 });
-
             });
-
         });
     });
 
-    it('should have a insertOne method', (done) => {
+
+    it('should have a insertOne method', () => {
 
         const db = new DB(options);
 
@@ -200,14 +200,15 @@ describe('level-mongo', () => {
 
                         expect(err).to.exist();
                         expect(inserted).to.not.exist();
-                        db.close(done);
+                        db.close(closeCb);
                     });
                 });
             });
         });
     });
 
-    it('should check parameters to insertOne method are valid', (done) => {
+
+    it('should check parameters to insertOne method are valid', () => {
 
         const db = new DB(options);
 
@@ -229,14 +230,14 @@ describe('level-mongo', () => {
                 db.collections.users.insertOne({ invalid: 'key' }, (err, doc) => {
 
                     expect(err).to.exist();
-                    db.close(done);
+                    db.close(closeCb);
 
                 });
             });
         });
     });
 
-    it('should have a insertMany method', (done) => {
+    it('should have a insertMany method', () => {
 
         const db = new DB(options);
 
@@ -254,14 +255,15 @@ describe('level-mongo', () => {
 
                     expect(err).to.exist();
                     expect(doc).to.not.exist();
-                    db.close(done);
+                    db.close(closeCb);
 
                 });
             });
         });
     });
 
-    it('should check parameters to insertMany method', (done) => {
+
+    it('should check parameters to insertMany method', () => {
 
         const db = new DB(options);
 
@@ -287,7 +289,7 @@ describe('level-mongo', () => {
                     db.collections.users.insertMany([{ _id: 'key' }, 'key'], (err, invalid) => {
 
                         expect(err).to.exist();
-                        db.close(done);
+                        db.close(closeCb);
 
                     });
 
@@ -296,7 +298,7 @@ describe('level-mongo', () => {
         });
     });
 
-    it('should have a deleteMany method', (done) => {
+    it('should have a deleteMany method', () => {
 
         const db = new DB(options);
 
@@ -318,7 +320,7 @@ describe('level-mongo', () => {
                         expect(err).to.not.exist();
                         expect(results).to.be.an.object();
                         expect(deleted.deleted).to.equal(['a', 'b', 'c']);
-                        db.close(done);
+                        db.close(closeCb);
 
                     });
                 });
@@ -326,7 +328,7 @@ describe('level-mongo', () => {
         });
     });
 
-    it('should have a deleteOne method', (done) => {
+    it('should have a deleteOne method', () => {
 
         const db = new DB(options);
 
@@ -343,14 +345,15 @@ describe('level-mongo', () => {
 
                     expect(err).to.not.exist();
                     expect(results.deleted).to.equal('test');
-                    db.close(done);
+                    db.close(closeCb);
 
                 });
             });
         });
     });
 
-    it('should throw or return errors for invalid parameters to deleteOne method', (done) => {
+
+    it('should throw or return errors for invalid parameters to deleteOne method', () => {
 
         const db = new DB(options);
 
@@ -374,7 +377,7 @@ describe('level-mongo', () => {
 
                     expect(err).to.not.exist();
                     expect(deleted).to.equal(null);
-                    db.close(done);
+                    db.close(closeCb);
                 });
 
             });
@@ -382,7 +385,8 @@ describe('level-mongo', () => {
         });
     });
 
-    it('should have a updateOne method', (done) => {
+
+    it('should have a updateOne method', () => {
 
         const db = new DB(options);
 
@@ -424,19 +428,18 @@ describe('level-mongo', () => {
 
                                     expect(err).to.exist();
                                     expect(keyErr).to.equal(null);
-                                    db.close(done);
+                                    db.close(closeCb);
                                 });
                             });
                         });
                     });
                 });
-
-
             });
         });
     });
 
-    it('should have a count method', (done) => {
+
+    it('should have a count method', () => {
 
         const db = new DB(options);
 
@@ -452,10 +455,8 @@ describe('level-mongo', () => {
 
                     expect(err).to.not.exist();
                     expect(recs).to.equal(3);
-                    db.close(done);
+                    db.close(closeCb);
                 });
-
-
             });
         });
     });

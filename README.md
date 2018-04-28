@@ -19,17 +19,18 @@ A basic mongo query interface for leveldb backend, future version will try to al
 
 Valid options for constructor object exposed by module are shown below
 
-`options`:
+options:
 
- * `collections` object with keys being name of collection (sublevel-level) to create
-    * `key` unique identifier for each json record within collection
- * `location` string required to define base directory where leveldb is persisted on disk
- * `config` object with the following keys
-   * `keyEncoding` string, valid options are one of 'hex', 'utf8', 'ascii', 'binary', 'base64', 'ucs2', 'utf16le'
-   * `createIfMissing` boolean, default true.  Create db if missing
-   * `errorIfExists` boolean, default false.  Error if db already exists
-   * `compression` boolean, default true.  Set to true to use snappy compression end for leveldb files
-   * `cacheSize` number, default 8 x 1024 x 1024.  LRU cache for leveldb
+ * collections - object with keys being name of collection (sublevel-level) to create
+    * key - unique identifier for each json record within collection
+ * location - string required to define base directory where leveldb is persisted on disk
+ * config - object with the following keys
+   * keyEncoding - string, valid options are one of 'hex', 'utf8', 'ascii', 'binary', 'base64', 'ucs2', 'utf16le'
+   * createIfMissing - boolean, default true.  Create db if missing
+   * errorIfExists - boolean, default false.  Error if db already exists
+   * compression - boolean, default true.  Set to true to use snappy compression end for leveldb files
+   * cacheSize - number, default 8 x 1024 x 1024.  LRU cache for leveldb
+
 
 
  ```javascript

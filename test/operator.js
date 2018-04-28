@@ -16,7 +16,7 @@ const expect = Code.expect;
 
 describe('operator', () => {
 
-    it('should test basic functionality of $set with simple objects', (done) => {
+    it('should test basic functionality of $set with simple objects', () => {
 
         const original = {
             hello: 'world'
@@ -31,11 +31,9 @@ describe('operator', () => {
 
         const results = Operators(original, operator);
         expect(results).to.equal({ hello: 'goodbye', world: 'hello' });
-        done();
-
     });
 
-    it('should test basic functionality of $unset with simple objects', (done) => {
+    it('should test basic functionality of $unset with simple objects', () => {
 
         const original = {
             hello: 'world',
@@ -54,11 +52,10 @@ describe('operator', () => {
 
         const results = Operators(original, operator);
         expect(results).to.equal({ key: 'value' });
-        done();
 
     });
 
-    it('should ignore invalid operator object and not modify original', (done) => {
+    it('should ignore invalid operator object and not modify original', () => {
 
         const original = {
             hello: 'world',
@@ -71,11 +68,9 @@ describe('operator', () => {
 
         const results = Operators(original, operator);
         expect(results).to.equal(original);
-        done();
-
     });
 
-    it('should ignore undefined fields when modifying', (done) => {
+    it('should ignore undefined fields when modifying', () => {
 
         const original = {
             hello: 'world',
@@ -93,7 +88,6 @@ describe('operator', () => {
 
         const results = Operators(original, operator);
         expect(results).to.equal(original);
-        done();
 
     });
 
