@@ -4,9 +4,6 @@ const Code = require('code');
 const Operators = require('../lib/operator.js');
 const Lab = require('lab');
 
-// Fixtures
-
-
 // Set-up lab
 const lab = exports.lab = Lab.script();
 const describe = lab.describe;

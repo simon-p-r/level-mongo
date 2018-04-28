@@ -26,12 +26,12 @@ describe('level-mongo', () => {
 
         return new Promise((resolve) => {
 
-            // Wait 1 second
+            /* eslint-disable */
             RmDir('./test/fixtures/level', (err) => {
 
-                expect(err).to.not.exist();
                 resolve();
             });
+            /* eslint-enable */
         });
     });
 
